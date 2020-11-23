@@ -1,3 +1,4 @@
+import getYoutubeId from 'get-youtube-id'
 
 export default str => {
   const project = {}
@@ -37,6 +38,14 @@ export default str => {
       block = {
         type: 'video',
         url: text
+      }
+    }
+
+    const isYT = getYoutubeId(text)
+    if (isYT) {
+      block = {
+        type: 'youtube',
+        url: isYT
       }
     }
 
