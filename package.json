@@ -1,6 +1,6 @@
 {
   "name": "@presenta/txt2pjson",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "unpkg": "dist/txt2pjson.min.js",
