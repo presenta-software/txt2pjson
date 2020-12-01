@@ -25,7 +25,7 @@ export default str => {
       })
     }
 
-    const isImg = text.match(/(.jpg|.gif|.png|.jpeg|.webp)/gi)
+    const isImg = text.match(/(\.jpg|\.gif|\.png|\.jpeg|\.webp)/gi)
     if (isImg) {
       block = {
         type: 'image',
@@ -33,10 +33,18 @@ export default str => {
       }
     }
 
-    const isVid = text.match(/(.m4v|.mov|.mp4|.webm)/gi)
+    const isVid = text.match(/(\.m4v|\.mov|\.mp4|\.webm)/gi)
     if (isVid) {
       block = {
         type: 'video',
+        url: text
+      }
+    }
+
+    const isHtml = text.match(/(\.htm|\.html)/gi)
+    if (isHtml) {
+      block = {
+        type: 'embed',
         url: text
       }
     }
