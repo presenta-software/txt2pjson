@@ -3,6 +3,7 @@ import marked from 'marked'
 import fm from 'front-matter'
 import emoji from 'node-emoji'
 import { colors, fonts } from './thememap'
+import md5 from 'md5'
 
 export default ostr => {
   const project = {}
@@ -15,6 +16,8 @@ export default ostr => {
   for (const k in attr) {
     project[k] = attr[k]
   }
+
+  project._integrity = md5(JSON.stringify(attr))
 
   if (project.colors) project.colors = colors[project.colors]
   if (project.fonts) project.fonts = fonts[project.fonts]
