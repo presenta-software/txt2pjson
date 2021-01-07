@@ -1,8 +1,23 @@
 import getYoutubeId from 'get-youtube-id'
+import marked from 'marked'
+import fm from 'front-matter'
+import emoji from 'node-emoji'
+import { colors, fonts } from './thememap'
 
-export default str => {
+export default ostr => {
   const project = {}
   const scenes = []
+
+  const front = fm(emoji.emojify(ostr))
+  const attr = front.attributes
+  const str = front.body
+
+  for (const k in attr) {
+    project[k] = attr[k]
+  }
+
+  if (project.colors) project.colors = colors[project.colors]
+  if (project.fonts) project.fonts = fonts[project.fonts]
 
   const arr = str.split('\n\n')
 
@@ -13,7 +28,7 @@ export default str => {
 
     let block = {
       type: 'text',
-      text: `# ${text}`,
+      text: marked(`# ${text}`),
       textVar: 'title',
       scale: 4
     }
